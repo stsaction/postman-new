@@ -4,8 +4,8 @@ pipeline {
     stages {
         stage('Install dependencies') {
             steps {
-                sh 'npm install --global newman'
-                sh 'npm install newman-reporter-html'
+                sh 'sudo npm install --global newman'
+                sh 'sudo npm install newman-reporter-html'
             }
         }
         
