@@ -2,12 +2,6 @@ pipeline {
     agent any
 
     stages {
-        stage('Install dependencies') {
-            steps {
-                // Install Newman and Newman HTML reporter without using sudo
-                sh 'sudo npm install --global newman newman-reporter-html'
-            }
-        }
 
         stage('Run tests') {
             steps {
