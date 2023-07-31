@@ -12,6 +12,8 @@ pipeline {
         stage('Run tests') {
             steps {
                 script {
+                    sh "npm install --global newman"
+                    sh "npm install newman"
                     // Set up environment variables
                     def environmentFile = 'sage_sprint.postman_environment.json'
                     def collectionFile = 'postman_collection.json'
