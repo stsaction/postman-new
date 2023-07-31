@@ -5,7 +5,7 @@ pipeline {
         stage('Install dependencies') {
             steps {
                 // Install Newman and Newman HTML reporter without using sudo
-                sh 'npm install --global newman newman-reporter-html'
+                sh 'sudo npm install --global newman newman-reporter-html'
             }
         }
 
