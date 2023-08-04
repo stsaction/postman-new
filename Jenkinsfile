@@ -8,7 +8,7 @@ pipeline {
                 script {
                     // Set up environment variables (ensure files are present in the workspace)
                     def environmentFile = 'sage_sprint.postman_environment.json'
-                    def collectionFile = 'postman_collection.json'
+                    def collectionFile = 'Postman_Collection.json'
                     // def preRequestScriptFile = 'JWT_Pre_Request_Scripts.js'
 
                     // Execute pre-request script (if needed)
