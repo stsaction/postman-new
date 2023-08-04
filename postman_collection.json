@@ -2499,13 +2499,13 @@
 									"    // Check if the response contains the Form1099Records object\r",
 									"\r",
 									"    // Check the SuccessRecords status\r",
-									"    pm.test(\"SuccessRecords status is valid\", function () {\r",
+									"    pm.test(\"SuccessRecords status is Transmitted\", function () {\r",
 									"        const successRecords = responseJson.Form1099Records.SuccessRecords;\r",
 									"        pm.expect(successRecords[0].Status).to.be.oneOf([\"Transmitted\"]);\r",
 									"    });\r",
 									"\r",
 									"    // Check the OnlineAccess status\r",
-									"    pm.test(\"OnlineAccess status is valid\", function () {\r",
+									"    pm.test(\"OnlineAccess status is ORDER_CREATED\", function () {\r",
 									"        const onlineAccess = responseJson.Form1099Records.SuccessRecords[0].OnlineAccess;\r",
 									"        pm.expect(onlineAccess.Status).to.be.oneOf([\"ORDER_CREATED\"]);\r",
 									"    });\r",
@@ -22971,10 +22971,19 @@
 							"listen": "test",
 							"script": {
 								"exec": [
-									"pm.test(\"Status code is 200\", function () {\r",
-									"    pm.response.to.have.status(200);\r",
-									"});\r",
-									""
+									"// Check the status code and handle accordingly\r",
+									"if (pm.response.code === 200) {\r",
+									"    // Test for Status Code 200\r",
+									"    pm.test(\"Status code is 200\", function () {\r",
+									"        pm.response.to.have.status(200);\r",
+									"    });\r",
+									"} else if (pm.response.code === 404) {\r",
+									"    // Test for Status Code 404 and Error Message\r",
+									"    pm.test(\"Status code is 404 & SubmissionId is invalid\", function () {\r",
+									"        var jsonData = pm.response.json();\r",
+									"        pm.expect(jsonData.Errors[0].Message).to.eql(\"SubmissionId is invalid\");\r",
+									"    });\r",
+									"} "
 								],
 								"type": "text/javascript"
 							}
